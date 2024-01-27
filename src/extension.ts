@@ -139,7 +139,7 @@ class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 			<head>
 				<meta charset="UTF-8">
 
-				<!--
+				<!--:
 					Use a content security policy to only allow loading styles from our extension directory,
 					and only allow scripts that have a specific nonce.
 					(See the 'webview-sample' extension sample for img-src content security policy examples)
@@ -148,7 +148,7 @@ class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 				<link rel="stylesheet" href="${styleUri}">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-				<title>Cat Colors</title>
+				<title>LLM Audit for vscode</title>
 			</head>
 			<body>
 				<p id="response" class="response">Hello there, it's LLM audit extension</p>

@@ -104,6 +104,7 @@ class LLMAuditViewProvider {
     _getHtmlForWebview(webview) {
         // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
         const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'));
+        const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'style.css'));
         // Use a nonce to only allow a specific script to be run.
         const nonce = getNonce();
         return `<!DOCTYPE html>
@@ -117,13 +118,13 @@ class LLMAuditViewProvider {
 					(See the 'webview-sample' extension sample for img-src content security policy examples)
 				-->
 				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-
+				<link rel="stylesheet" href="${styleUri}">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 				<title>Cat Colors</title>
 			</head>
 			<body>
-				<pre id="response" class="response" style="white-space: pre-line;">Hello there, it's LLM audit extension</pre>
+				<p id="response" class="response">Hello there, it's LLM audit extension</p>
 
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
