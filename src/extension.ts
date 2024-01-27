@@ -54,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand('llm_audit-vscode.askLLM', () => {
 			let code = getSel();
-			provider.askGPT(code);
+			provider.askLLM(code);
 		}));
 }
 
@@ -88,7 +88,7 @@ class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 
 	}
 
-	public async askGPT(code?:string) {
+	public async askLLM(code?:string) {
 		// focus gpt activity from activity bar
 		if (!this._view) {
 			await vscode.commands.executeCommand('llm_audit-vscode.responseView.focus');
