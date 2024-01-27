@@ -99,7 +99,7 @@ class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 		let response = '';
 		let isError = false;
 		
-		var gpt_is = spawn('python3', ['-m', 'gpt_is']);
+		var gpt_is = spawn('python3', ['-m', 'llm_audit']);
 		
 		gpt_is.stdin.write(code);
 		gpt_is.stdout.on('data', (data?:string) => {
