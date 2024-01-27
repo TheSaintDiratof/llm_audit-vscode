@@ -150,7 +150,7 @@ class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 				<title>Cat Colors</title>
 			</head>
 			<body>
-				<pre id="response" class="response" style="white-space: pre-line;">Hello there, it's LLM audit extension</pre>
+				<p id="response" class="response" style="word-break: break-word;">Hello there, it's LLM audit extension</p>
 
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>

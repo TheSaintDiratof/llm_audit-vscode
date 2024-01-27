@@ -36,10 +36,12 @@
     function setError() {
         let p = document.getElementById('response');
         p.style.color = "red";
+		p.style.wordBreak= "break-word";
     }
     function unsetError() {
         let p = document.getElementById('response');
         p.style.color = "white";
+		p.style.wordBreak = "break-word";
     }
 }());
 
