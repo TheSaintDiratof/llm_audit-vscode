@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.registerWebviewViewProvider(LLMAuditViewProvider.viewType, provider));
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('llm_audit-vscode.askGPT', () => {
+		vscode.commands.registerCommand('llm_audit-vscode.askLLM', () => {
 			let code = getSel();
 			provider.askGPT(code);
 		}));

@@ -33,7 +33,7 @@
 		},
 		"commands": [
 			{
-				"command": "llm_audit-vscode.askGPT",
+				"command": "llm_audit-vscode.askLLM",
 				"category": "llm_audit-vscode",
 				"title": "Ask LLM"
 			}
