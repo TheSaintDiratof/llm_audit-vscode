@@ -3,9 +3,6 @@
 // This script will be run within the webview itself
 // It cannot access the main VS Code APIs directly.
 
-//import { python } from 'pythonia'
-//const { python } = require('pythonia');
-//const python = pythonia.python;
 
 (function () {
     // Handle messages sent from the extension to the webview

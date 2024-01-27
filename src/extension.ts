@@ -24,43 +24,43 @@ function getSel() {
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const provider = new GPTISViewProvider(context.extensionUri);
+	const provider = new LLMAuditViewProvider(context.extensionUri);
 
 	vscode.workspace.onDidChangeConfiguration((event: vscode.ConfigurationChangeEvent) => {                                                                                                
-		if (event.affectsConfiguration('gpt_is-vscode.intro')) {                                                                                                                       
+		if (event.affectsConfiguration('llm_audit-vscode.intro')) {                                                                                                                       
 				// Get the extension's configuration                                                                                                                                   
-				const config = vscode.workspace.getConfiguration('gpt_is-vscode');                                                                                                     
+				const config = vscode.workspace.getConfiguration('llm_audit-vscode');                                                                                                     
 				settings.prefix = config.get('prefix') || false;                                                                                                                            
 				// add the new token to the provider                                                                                                                                   
 		}                                                                                                                                                                              
-		if (event.affectsConfiguration('gpt_is-vscode.model')) {                                                                                                                       
-				const config = vscode.workspace.getConfiguration('gpt_is_vscode');                                                                                                     
+		if (event.affectsConfiguration('llm_audit-vscode.model')) {                                                                                                                       
+				const config = vscode.workspace.getConfiguration('llm_audit-vscode');                                                                                                     
 				settings.model = config.get('model') || false;                                                                                                                             
 		}                                                                                                                                                                              
-		if (event.affectsConfiguration('gpt_is-vscode.addition')) {                                                                                                                    
-				const config = vscode.workspace.getConfiguration('gpt_is-vscode');                                                                                                     
+		if (event.affectsConfiguration('llm_audit-vscode.addition')) {
+				const config = vscode.workspace.getConfiguration('llm_audit-vscode');
 				settings.addition = config.get('addition') || false;                                                                                                                       
 		}                                                                                                                                                                              
-		if (event.affectsConfiguration('gpt_is-vscode.role')) {                                                                                                                    
-				const config = vscode.workspace.getConfiguration('gpt_is-vscode');                                                                                                     
+		if (event.affectsConfiguration('llm_audit-vscode.role')) {                                                                                                                    
+				const config = vscode.workspace.getConfiguration('llm_audit-vscode');                                                                                                     
 				settings.role = config.get('role') || false;                                                                                                                               
 		}                                                                                                                                                                              
 });                                                                                                                                                                                    
 
 
 	context.subscriptions.push(
-		vscode.window.registerWebviewViewProvider(GPTISViewProvider.viewType, provider));
+		vscode.window.registerWebviewViewProvider(LLMAuditViewProvider.viewType, provider));
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('gpt_is-vscode.askGPT', () => {
+		vscode.commands.registerCommand('llm_audit-vscode.askGPT', () => {
 			let code = getSel();
 			provider.askGPT(code);
 		}));
 }
 
-class GPTISViewProvider implements vscode.WebviewViewProvider {
+class LLMAuditViewProvider implements vscode.WebviewViewProvider {
 
-	public static readonly viewType = 'gpt_is-vscode.responseView';
+	public static readonly viewType = 'llm_audit-vscode.responseView';
 
 	private _view?: vscode.WebviewView;
 
@@ -91,7 +91,7 @@ class GPTISViewProvider implements vscode.WebviewViewProvider {
 	public async askGPT(code?:string) {
 		// focus gpt activity from activity bar
 		if (!this._view) {
-			await vscode.commands.executeCommand('gpt_is-vscode.responseView.focus');
+			await vscode.commands.executeCommand('llm_audit-vscode.responseView.focus');
 		} else {
 			this._view?.show?.(true);
 		}
@@ -130,11 +130,6 @@ class GPTISViewProvider implements vscode.WebviewViewProvider {
 		// Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
 		const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'));
 
-		// Do the same for the stylesheet.
-		//const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
-		//const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
-		//const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'));
-
 		// Use a nonce to only allow a specific script to be run.
 		const nonce = getNonce();
 
@@ -151,11 +146,6 @@ class GPTISViewProvider implements vscode.WebviewViewProvider {
 				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<!--
-				<link href="\${styleResetUri}" rel="stylesheet">
-				<link href="\${styleVSCodeUri}" rel="stylesheet">
-				<link href="\${styleMainUri}" rel="stylesheet">
-				-->
 
 				<title>Cat Colors</title>
 			</head>
