@@ -1,0 +1,6 @@
+[submodule "g4f-nix"]
+	path = g4f-nix
+	url = https://github.com/TheSaintDiratof/g4f-nix
+[submodule "llm_audit"]
+	path = llm_audit
+	url = https://github.com/TheSaintDiratof/llm_audit
