@@ -23,5 +23,8 @@ llm_audit-vscode.addition="addition"
 llm_audit-vscode.role="role"
 ```
 ### Usage
-There are only one exposed function and it's "AskAndShowAnswer"
-By default it's binded to "llm"
+There are only one exposed function and it's "llm_audin-vscode.askLLM"
+
+You can bind it
+
+Just select code and call function

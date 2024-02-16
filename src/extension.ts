@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const provider = new LLMAuditViewProvider(context.extensionUri);
 
 	vscode.workspace.onDidChangeConfiguration((event: vscode.ConfigurationChangeEvent) => {                                                                                                
-		if (event.affectsConfiguration('llm_audit-vscode.intro')) {                                                                                                                       
+		if (event.affectsConfiguration('llm_audit-vscode.prefix')) {                                                                                                                       
 				// Get the extension's configuration                                                                                                                                   
 				const config = vscode.workspace.getConfiguration('llm_audit-vscode');                                                                                                     
 				settings.prefix = config.get('prefix') || false;                                                                                                                            
