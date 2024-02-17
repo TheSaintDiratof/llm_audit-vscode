@@ -37,7 +37,32 @@
 				"category": "llm_audit-vscode",
 				"title": "Ask LLM"
 			}
-		]
+		],
+		"configuration": {
+      		"title": "LLM audit in VSCode",
+		    "properties": {
+        		"llm_audit-vscode.prefix": {
+          			"type": "string",
+          			"default": "\"There is a piece of code Show me vulnerabilities in this code. Answer like \\\"$line_number $what_kind_of_vulnerability $way_to_fix\\\"\"",
+          			"description": "Prefix for request."
+        		},
+        		"llm_audit-vscode.model": {
+          			"type": "string",
+          			"default": "llama2_70b",
+          			"description": "Model for request."
+        		},
+        		"llm_audit-vscode.role": {
+          			"type": "string",
+          			"default": "role",
+          			"description": "Role for request."
+        		},
+        		"llm_audit-vscode.addition": {
+          			"type": "string",
+          			"default": "",
+          			"description": "Addition for request."
+        		}
+      		}
+    	}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
